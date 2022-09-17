@@ -1,9 +1,9 @@
 package ru.mirea.lab2.Ex4;
 
 public interface methodsPC {
-    boolean addPC(PC pc);
+    void addPC();
 
-    boolean deletePC(PC pc);
+    void deletePC();
 
-    PC searchPC(PC pc);
+    void searchPC();
 }

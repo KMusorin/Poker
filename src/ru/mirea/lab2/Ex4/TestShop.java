@@ -9,16 +9,17 @@ public class TestShop {
         PC pc = new PC("", "", "", "");
         Shop shop = new Shop();
 
+
+
         while (true) {
             System.out.println("Введите команду (add, delete, search, array или exit - что бы выйти): ");
             String s = scanner.nextLine();
             if (s.equals("add")) {
-                shop.addPC(shop.input());
-                System.out.println("Компьютер успешно добавлен!");
+                shop.addPC();
             } else if (s.equals("delete")) {
-                shop.deletePC(shop.input());
+                shop.deletePC();
             } else if (s.equals("search")) {
-                System.out.println(shop.searchPC(shop.input()));
+                shop.searchPC();
             } else if (s.equals("array")) {
                 for (PC ps : shop.arrayPCs) {
                     System.out.println(ps);

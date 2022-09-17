@@ -9,38 +9,49 @@ public class Shop implements methodsPC {
     public static List<PC> arrayPCs = new ArrayList<>();
 
     @Override
-    public boolean deletePC(PC pc) {
+    public void addPC() {
+        System.out.println(addPC(input()));
+    }
+
+    @Override
+    public void deletePC() {
+        System.out.println(deletePC(input()));
+    }
+
+    @Override
+    public void searchPC() {
+        searchPC(input());
+    }
+
+    public String addPC(PC pc) {
+
+        return arrayPCs.add(pc)? "Компьютер успешно добавлен!" + "\n" + pc: "Не удалось";
+    }
+
+    public String deletePC(PC pc) {
         PC computer = searchPC(pc);
         if (computer != null) {
-            System.out.println("Компьютер успешно удален!");
-            return arrayPCs.remove(computer);
-        } else {
-            System.out.println("Компьютер не может быть удален!");
-            return false;
-
+            return arrayPCs.remove(computer) ? "Компьютер успешно удален!" : "Компьютер не может быть удален!";
         }
-
+        return "Компьютер не найден";
     }
 
-    @Override
-    public boolean addPC(PC pc) {
-        System.out.println("Компьютер успешно добавлен!");
-        return arrayPCs.add(pc);
-    }
 
-    @Override
     public PC searchPC(PC pc) {
         PC computer = null;
 
         for (PC comp : arrayPCs) {
             if (comp.getModel().equals(pc.getModel()) && comp.getColor().equals(pc.getColor()) && comp.getCpu().equals(pc.getCpu()) && comp.getRam().equals(pc.getRam())) {
-                System.out.println("Компьютер найден!");
                 computer = comp;
+                System.out.println("Компьютер найден " + computer);
+
+            }else {
+                System.out.println("Компьютер не найден");
             }
         }
-        System.out.println("Компьютер не найден!");
         return computer;
     }
+
 
     public PC input() {
         Scanner scanner = new Scanner(System.in);
