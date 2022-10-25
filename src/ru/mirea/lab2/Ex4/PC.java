@@ -29,22 +29,6 @@ public class PC {
         return ram;
     }
 
-//    public void setModel(String model) {
-//        this.model = model;
-//    }
-//
-//    public void setColor(String color) {
-//        this.color = color;
-//    }
-//
-//    public void setCpu(String cpu) {
-//        this.cpu = cpu;
-//    }
-//
-//    public void setRam(String ram) {
-//        this.ram = ram;
-//    }
-
     @Override
     public String toString() {
         return "PC{" +
