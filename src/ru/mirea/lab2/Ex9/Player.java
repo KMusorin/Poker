@@ -22,8 +22,7 @@ public class Player {
     public void setCard(Card card) {
         if (cards.length - countCards > 0) {
             cards[cards.length - 1 - countCards] = card;
-            card.setPlayer(this); //композиция
-            card.setDeck(null);
+            card.setDealed(); //композиция
             countCards++;
 
         } else {

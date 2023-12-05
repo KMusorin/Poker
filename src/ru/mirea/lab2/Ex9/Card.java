@@ -3,28 +3,28 @@ package ru.mirea.lab2.Ex9;
 public class Card {
     private final String rank;
     private final char suit;
-    private Player player;
-    private Deck deck;
+    private boolean dealed;
+    private boolean opened;
 
     public Card(String rank, char suit) {
         this.rank = rank;
         this.suit = suit;
     }
 
-    public Player getPlayer() {
-        return player;
+    public boolean isDealed() {
+        return dealed;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setDealed() { // Роздана игроку
+        this.dealed = true;
     }
 
-    public Deck getDeck() {
-        return deck;
+    public boolean isOpened() {
+        return opened;
     }
 
-    public void setDeck(Deck deck) {
-        this.deck = deck;
+    public void setOpened() {  // Открыта на стол
+        this.opened = true;
     }
 
     public String getRank() {

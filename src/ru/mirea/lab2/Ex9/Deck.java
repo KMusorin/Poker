@@ -12,7 +12,6 @@ public class Deck {
         for (Rank rank : Rank.values()) {
             for (Suits suit : Suits.values()) {
                 cards[i] = new Card(rank.getTitle(), suit.getTitle());
-                cards[i].setDeck(this); // композиция
                 i++;
             }
         }
