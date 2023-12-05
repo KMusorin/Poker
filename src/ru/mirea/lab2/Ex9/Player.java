@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Player {
     private int number;
-    private final Card[] cards = new Card[5];
+    private final Card[] cards = new Card[2];
     private int countCards = 0;
 
     public Player(int number) {

@@ -3,9 +3,11 @@ package ru.mirea.lab2.Ex9;
 import java.util.*;
 
 public class Deck {
+    // Singleton pattern Double Checked Locking & volatile
+    private static volatile Deck instance;
     private final Card[] cards = new Card[52];
 
-    public Deck() {
+    private Deck() {
         int i = 0;
         for (Rank rank : Rank.values()) {
             for (Suits suit : Suits.values()) {
@@ -14,6 +16,19 @@ public class Deck {
                 i++;
             }
         }
+    }
+
+    public static Deck getInstance() {
+        Deck localInstance = instance;
+        if (localInstance == null) {
+            synchronized (Deck.class){
+                localInstance = instance;
+                if (localInstance == null){
+                    instance = localInstance = new Deck();
+                }
+            }
+        }
+        return localInstance;
     }
 
     public void shuffleCards() {
@@ -31,7 +46,7 @@ public class Deck {
 
     public void deal(Player[] players) {
         int countIndex = 0; //счетчик карт
-        for (int i = 0; i < 5 * players.length; i += players.length) { //номер круга раздачи
+        for (int i = 0; i < 2 * players.length; i += players.length) { //номер круга раздачи
             for (Player player : players) {
                 player.setCard(cards[countIndex]);
                 cards[countIndex] = null;

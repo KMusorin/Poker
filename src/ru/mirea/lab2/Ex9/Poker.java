@@ -6,12 +6,14 @@ import java.util.Scanner;
 public class Poker {
 
     public static void main(String[] args) {
-        Deck deck = new Deck();
+        Deck deck = Deck.getInstance();
+//        Deck deck1 = Deck.getInstance();
 //        System.out.println(deck); //не размешаная колода
         deck.shuffleCards();
         Player[] players = inputPlayerQty();
         deck.deal(players);
         System.out.println(deck);
+//        System.out.println(deck1);
         System.out.println(Arrays.toString(players));
     }
 
