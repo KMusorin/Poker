@@ -1,23 +1,24 @@
 package ru.mirea.lab2.Ex9;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Poker {
+    private static Player[] players = inputPlayerQty();
+    private static Deck deck = Deck.getInstance();
+
 
     public static void main(String[] args) {
-        Deck deck = Deck.getInstance();
-//        Deck deck1 = Deck.getInstance();
-//        System.out.println(deck); //не размешаная колода
-        deck.shuffleCards();
-        Player[] players = inputPlayerQty();
         deck.deal(players);
         System.out.println(deck);
 //        System.out.println(deck1);
         System.out.println(Arrays.toString(players));
+        System.out.println(Arrays.toString(deck.getOpenCards()));
+
     }
 
-    public static Player[] inputPlayerQty() {
+    private static Player[] inputPlayerQty() {
         Scanner scanner = new Scanner(System.in);
         int playerNumber = 0;
         while (playerNumber < 2 || playerNumber > 9) {

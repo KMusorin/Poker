@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Player {
     private int number;
-    private final Card[] cards = new Card[2];
+    private final Card[] playerCards = new Card[2];
     private int countCards = 0;
 
     public Player(int number) {
@@ -20,9 +20,8 @@ public class Player {
     }
 
     public void setCard(Card card) {
-        if (cards.length - countCards > 0) {
-            cards[cards.length - 1 - countCards] = card;
-            card.setDealed(); //композиция
+        if (playerCards.length - countCards > 0) {
+            playerCards[playerCards.length - 1 - countCards] = card;
             countCards++;
 
         } else {
@@ -30,15 +29,15 @@ public class Player {
         }
     }
 
-    public Card[] getCards() {
-        return cards;
+    public Card[] getPlayerCards() {
+        return playerCards;
     }
 
     @Override
     public String toString() {
         return "Player{" +
                 "number = " + number +
-                ", cards = " + Arrays.toString(cards) +
+                ", cards = " + Arrays.toString(playerCards) +
                 '}';
     }
 }

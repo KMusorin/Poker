@@ -3,20 +3,21 @@ package ru.mirea.lab2.Ex9;
 public class Card {
     private final String rank;
     private final char suit;
-    private boolean dealed;
+    private boolean dealt;
     private boolean opened;
+
 
     public Card(String rank, char suit) {
         this.rank = rank;
         this.suit = suit;
     }
 
-    public boolean isDealed() {
-        return dealed;
+    public boolean isDealt() {
+        return dealt;
     }
 
     public void setDealed() { // Роздана игроку
-        this.dealed = true;
+        this.dealt = true;
     }
 
     public boolean isOpened() {

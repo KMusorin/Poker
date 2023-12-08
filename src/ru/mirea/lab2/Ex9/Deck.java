@@ -5,16 +5,24 @@ import java.util.*;
 public class Deck {
     // Singleton pattern Double Checked Locking & volatile
     private static volatile Deck instance;
-    private final Card[] cards = new Card[52];
+    private static final Card[] cards = generateNewDeck();
+    private static final Card[] openedCards = openCardsToTable();
+    static{
+        shuffleCards();
+    }
 
-    private Deck() {
+    private Deck() {}
+
+    private static Card[] generateNewDeck(){
         int i = 0;
+        Card[] tempCards = new Card[52];
         for (Rank rank : Rank.values()) {
             for (Suits suit : Suits.values()) {
-                cards[i] = new Card(rank.getTitle(), suit.getTitle());
+                tempCards[i] = new Card(rank.getTitle(), suit.getTitle());
                 i++;
             }
         }
+        return tempCards;
     }
 
     public static Deck getInstance() {
@@ -30,7 +38,7 @@ public class Deck {
         return localInstance;
     }
 
-    public void shuffleCards() {
+    private static void shuffleCards() {
         int randIndex;
         Card tempCard;
         Random random = new Random();
@@ -43,24 +51,53 @@ public class Deck {
         System.out.println(Arrays.toString(cards));
     }
 
-    public void deal(Player[] players) {
+    public static void deal(Player[] players) {
         int countIndex = 0; //счетчик карт
         for (int i = 0; i < 2 * players.length; i += players.length) { //номер круга раздачи
             for (Player player : players) {
                 player.setCard(cards[countIndex]);
-                cards[countIndex] = null;
+                cards[countIndex].setDealed();
                 countIndex++;
 
             }
         }
+        openCardsToTable();
     }
 
-    public Card[] getCards() {
-        return cards;
+    private static Card[] openCardsToTable(){
+        Card[] tempOpenedCards = new Card[5];
+        tempOpenedCards = Arrays.stream(Arrays.copyOfRange(Arrays.stream(cards)
+                .filter(card -> card.isDealt() == false).toArray(),0,5)).toArray(Card[]::new);
+        //openedCards = tempOpenedCards;
+        for(Card card: tempOpenedCards){
+            card.setOpened();
+        }
+        return tempOpenedCards;
+    }
+
+
+
+
+    public Card[] getOpenCards() {
+
+/*        switch (stage) {
+            case FLOP -> {
+                int countIndex = 3;
+
+
+
+
+
+
+            }
+        }*/
+
+
+        return openedCards;
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(cards);
+        return Arrays.toString(Arrays.stream(cards).filter(card -> card.isDealt() == false && card.isOpened() == false).toArray());
     }
 }
