@@ -3,23 +3,24 @@ package ru.mirea.lab2.Ex9;
 import java.util.Arrays;
 
 public class Player {
-    private int number;
-    private final Card[] playerCards = new Card[2];
+    private int playerNumber;
+    private final Card[] playerCards = new Card[Deck.getplayerCardsQuantity()];
     private int countCards = 0;
 
     public Player(int number) {
-        this.number = number;
+        this.playerNumber = number;
     }
 
-    public int getNumber() {
-        return number;
+    public int getPlayerNumber() {
+        return playerNumber;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setPlayerNumber(int playerNumber) {
+        this.playerNumber = playerNumber;
     }
 
     public void setCard(Card card) {
+
         if (playerCards.length - countCards > 0) {
             playerCards[playerCards.length - 1 - countCards] = card;
             countCards++;
@@ -36,7 +37,7 @@ public class Player {
     @Override
     public String toString() {
         return "Player{" +
-                "number = " + number +
+                "number = " + playerNumber +
                 ", cards = " + Arrays.toString(playerCards) +
                 '}';
     }

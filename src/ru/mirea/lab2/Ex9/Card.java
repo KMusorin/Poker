@@ -16,7 +16,7 @@ public class Card {
         return dealt;
     }
 
-    public void setDealed() { // Роздана игроку
+    public void setDealt() { // Роздана игроку
         this.dealt = true;
     }
 

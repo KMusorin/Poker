@@ -3,19 +3,25 @@ package ru.mirea.lab2.Ex9;
 import java.util.*;
 
 public class Deck {
+    private static final int deckCardsQuantity = 52;
+    private static final int playerCardsQuantity = 2;
+    private static final int openCardsQuantity = 5;
     // Singleton pattern Double Checked Locking & volatile
     private static volatile Deck instance;
     private static final Card[] cards = generateNewDeck();
-    private static final Card[] openedCards = openCardsToTable();
     static{
         shuffleCards();
     }
+    private static final Card[] openedCards = new Card[openCardsQuantity];
+
+
+
 
     private Deck() {}
 
     private static Card[] generateNewDeck(){
         int i = 0;
-        Card[] tempCards = new Card[52];
+        Card[] tempCards = new Card[deckCardsQuantity];
         for (Rank rank : Rank.values()) {
             for (Suits suit : Suits.values()) {
                 tempCards[i] = new Card(rank.getTitle(), suit.getTitle());
@@ -53,10 +59,10 @@ public class Deck {
 
     public static void deal(Player[] players) {
         int countIndex = 0; //счетчик карт
-        for (int i = 0; i < 2 * players.length; i += players.length) { //номер круга раздачи
+        for (int i = 0; i < playerCardsQuantity * players.length; i += players.length) { //номер круга раздачи
             for (Player player : players) {
                 player.setCard(cards[countIndex]);
-                cards[countIndex].setDealed();
+                cards[countIndex].setDealt();
                 countIndex++;
 
             }
@@ -64,15 +70,19 @@ public class Deck {
         openCardsToTable();
     }
 
-    private static Card[] openCardsToTable(){
-        Card[] tempOpenedCards = new Card[5];
+    private static void openCardsToTable(){
+        Card[] tempOpenedCards;
         tempOpenedCards = Arrays.stream(Arrays.copyOfRange(Arrays.stream(cards)
                 .filter(card -> card.isDealt() == false).toArray(),0,5)).toArray(Card[]::new);
         //openedCards = tempOpenedCards;
+        int countCard = openCardsQuantity;
         for(Card card: tempOpenedCards){
             card.setOpened();
+            openedCards[openCardsQuantity - countCard] = card;
+            countCard--;
         }
-        return tempOpenedCards;
+
+
     }
 
 
@@ -94,6 +104,9 @@ public class Deck {
 
 
         return openedCards;
+    }
+    public static int getplayerCardsQuantity(){
+        return playerCardsQuantity;
     }
 
     @Override
