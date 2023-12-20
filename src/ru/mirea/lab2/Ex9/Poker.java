@@ -5,8 +5,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Poker {
-    private static Player[] players = inputPlayerQty();
-    private static Deck deck = Deck.getInstance();
+    private final static Player[] players = inputPlayerQty();
+    private final static Deck deck = Deck.getInstance();
 
 
     public static void main(String[] args) {

@@ -1,13 +1,13 @@
 package ru.mirea.lab2.Ex9;
 
 public class Card {
-    private final String rank;
-    private final char suit;
+    private final Ranks rank;
+    private final Suits suit;
     private boolean dealt;
     private boolean opened;
 
 
-    public Card(String rank, char suit) {
+    public Card(Ranks rank, Suits suit) {
         this.rank = rank;
         this.suit = suit;
     }
@@ -28,16 +28,16 @@ public class Card {
         this.opened = true;
     }
 
-    public String getRank() {
+    public Ranks getRank() {
         return rank;
     }
 
-    public char getSuit() {
+    public Suits getSuit() {
         return suit;
     }
 
     @Override
     public String toString() {
-        return rank + suit;
+        return rank.getTitle() + suit.getTitle();
     }
 }

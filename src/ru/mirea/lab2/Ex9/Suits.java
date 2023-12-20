@@ -15,4 +15,7 @@ public enum Suits {
     public char getTitle() {
         return title;
     }
-}
+
+
+    }
+

@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Player {
     private int playerNumber;
-    private final Card[] playerCards = new Card[Deck.getplayerCardsQuantity()];
-    private int countCards = 0;
+    private final Card[] playerCards = new Card[Deck.getPlayerCardsQuantity()];
+    private  int countCards = 0;
 
     public Player(int number) {
         this.playerNumber = number;

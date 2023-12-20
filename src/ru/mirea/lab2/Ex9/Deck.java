@@ -22,15 +22,16 @@ public class Deck {
     private static Card[] generateNewDeck(){
         int i = 0;
         Card[] tempCards = new Card[deckCardsQuantity];
-        for (Rank rank : Rank.values()) {
+        for (Ranks rank : Ranks.values()) {
             for (Suits suit : Suits.values()) {
-                tempCards[i] = new Card(rank.getTitle(), suit.getTitle());
+                tempCards[i] = new Card(rank, suit);
                 i++;
             }
         }
         return tempCards;
     }
 
+    // Singleton pattern Double Checked Locking
     public static Deck getInstance() {
         Deck localInstance = instance;
         if (localInstance == null) {
@@ -73,8 +74,7 @@ public class Deck {
     private static void openCardsToTable(){
         Card[] tempOpenedCards;
         tempOpenedCards = Arrays.stream(Arrays.copyOfRange(Arrays.stream(cards)
-                .filter(card -> card.isDealt() == false).toArray(),0,5)).toArray(Card[]::new);
-        //openedCards = tempOpenedCards;
+                .filter(card -> card.isDealt() == false).toArray(),0,openCardsQuantity)).toArray(Card[]::new);
         int countCard = openCardsQuantity;
         for(Card card: tempOpenedCards){
             card.setOpened();
@@ -105,7 +105,7 @@ public class Deck {
 
         return openedCards;
     }
-    public static int getplayerCardsQuantity(){
+    public static int getPlayerCardsQuantity(){
         return playerCardsQuantity;
     }
 
