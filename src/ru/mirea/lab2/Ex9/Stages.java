@@ -1,6 +1,6 @@
 package ru.mirea.lab2.Ex9;
 
-public enum Stage {
+public enum Stages {
     PREFLOP,
     FLOP,
     TURN,

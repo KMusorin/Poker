@@ -1,6 +1,6 @@
 package ru.mirea.lab2.Ex9;
 
-public enum Combination {
+public enum Combinations {
     HIGH_CARD(10),
     PAIR(9),
     TWO_PAIRS(8),
@@ -14,7 +14,7 @@ public enum Combination {
 
     private final int ranking;
 
-    Combination (int ranking) {this.ranking = ranking;}
+    Combinations(int ranking) {this.ranking = ranking;}
 
     public int getRanking() {
         return ranking;
